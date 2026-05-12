@@ -1,7 +1,11 @@
 import { useState } from "react";
 
 function App() {
-  const [name, setName] = useState(slowGetter);
+  // const [name, setName] = useState(slowGetter); //This is slower as the function is called to set inital value of state variable and also when state is updated
+  const [name, setName] = useState(() => {
+    console.log("Inline state setter");
+    return "Kyle"; //This is faster as it executes only once to set the initial value of state variable
+  });
 
   function slowGetter() {
     console.log("State setter");
